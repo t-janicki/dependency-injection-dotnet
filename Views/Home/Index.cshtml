@@ -1,0 +1,45 @@
+@model IEnumerable<DependencyInjection.Models.Product>
+@{ Layout = null; }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Wstrzykiwanie zależności</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body class="m-1 p-1">
+@if (ViewData.Count > 0){
+    <table class="table table-bordered table-sm table-striped">
+        @foreach (var kvp in ViewData){
+            <tr>
+                <td>@kvp.Key</td><td>@kvp.Value</td>
+            </tr>
+        }
+    </table>
+}
+<table class="table table-bordered table-sm table-striped">
+    <thead>
+    <tr>
+        <th>Produkt</th><th>Cena</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model == null){
+        <tr>
+            <td colspan="3" class="text-center">Brak danych modelu</td>
+        </tr>
+    }
+    else{
+        @foreach(var p in Model) {
+            <tr>
+                <td>@p.Name</td>
+                <td>@($"{p.Price:C2}")</td>
+            </tr>
+    }
+    }
+    </tbody>
+</table>
+</body>
+</html>
